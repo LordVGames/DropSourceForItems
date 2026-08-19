@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <Nullable>annotations</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>$(NoWarn);NU5104</NoWarn>
+    <RootNamespace>DropSourceForItems</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="PatcherInfoToReference.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Core" Version="5.4.19" />
+    <PackageReference Include="UnityEngine.Modules" Version="2021.3.33" />
+  </ItemGroup>
+
+	<PropertyGroup>
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>embedded</DebugType>
+		<PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))=./</PathMap>
+	</PropertyGroup>
+	
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="set profilePatchersFolder=F:\Various Caches 2\Gale\Data\riskofrain2\profiles\close to vanilla TEST WITH MOD\BepInEx\patchers\AddDropSourcePatcher&#xD;&#xA;set thunderstorePatchersFolder=$(ProjectDir)..\..\..\Thunderstore\Package Files\patchers\AddDropSourcePatcher&#xD;&#xA;&#xD;&#xA;start /wait taskkill /f /im &quot;Risk of Rain 2.exe&quot;&#xD;&#xA;start /wait timeout /t 2&#xD;&#xA;&#xD;&#xA;copy /y &quot;$(TargetDir)$(TargetName).dll&quot; &quot;%25profilePatchersFolder%25&quot;&#xD;&#xA;copy /y &quot;$(TargetDir)$(TargetName).dll&quot; &quot;%25thunderstorePatchersFolder%25&quot;&#xD;&#xA;&#xD;&#xA;rem start &quot;&quot; &quot;D:\Steam on SSD\steamapps\common\Risk of Rain 2\Risk of Rain 2.exe - Close to Vanilla Test WITH MOD.lnk&quot;" />
+  </Target>
+</Project>

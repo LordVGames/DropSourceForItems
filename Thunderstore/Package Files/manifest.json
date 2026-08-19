@@ -1,0 +1,10 @@
+{
+	"name": "DropSourceForItems",
+	"version_number": "1.0.0",
+	"website_url": "https://github.com/LordVGames/DropSourceForItems",
+	"description": "Adds a drop source field to item pickups for modders to know what GameObject an item came from. Mod does nothing on it's own!",
+	"dependencies": [
+		"bbepis-BepInExPack-5.4.2121",
+		"MonoDetour-MonoDetour_BepInEx_5-0.7.15"
+	]
+}
